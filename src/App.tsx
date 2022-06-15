@@ -10,7 +10,7 @@ const App: FC = () => {
 	const store = setupStore();
 	return (
 		<Provider store={store}>
-			<BrowserRouter>
+			<BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
 				<Layout className='container'>
 					<Layout.Content>
 						<AppRouter />
