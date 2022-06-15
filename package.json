@@ -2,7 +2,7 @@
 	"name": "artmyweb-users",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://066den.github.io/artmyweb-users",
+	"homepage": "https://066den.github.io/artmyweb-users/",
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.8.2",
 		"@testing-library/jest-dom": "^5.16.4",
