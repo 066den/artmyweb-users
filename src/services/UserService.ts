@@ -12,7 +12,8 @@ export const userAPI = createApi({
 				url: 'users',
 				params: {
 					...params,
-					'access-token': 'REACT_APP_API_TOKEN',
+					'access-token':
+						'd3bc211eb96a196844e577f1e8c31887d97c2ec137490f95f45fa93d68ad54f5',
 				},
 			}),
 		}),
@@ -20,7 +21,8 @@ export const userAPI = createApi({
 			query: id => ({
 				url: `users/${id}`,
 				params: {
-					'access-token': 'REACT_APP_API_TOKEN',
+					'access-token':
+						'd3bc211eb96a196844e577f1e8c31887d97c2ec137490f95f45fa93d68ad54f5',
 				},
 			}),
 		}),
