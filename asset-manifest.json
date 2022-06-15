@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/artmyweb-users/static/css/main.94571b6d.css",
+    "main.js": "/artmyweb-users/static/js/main.ee321e1f.js",
+    "index.html": "/artmyweb-users/index.html",
+    "main.94571b6d.css.map": "/artmyweb-users/static/css/main.94571b6d.css.map",
+    "main.ee321e1f.js.map": "/artmyweb-users/static/js/main.ee321e1f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94571b6d.css",
+    "static/js/main.ee321e1f.js"
+  ]
+}
