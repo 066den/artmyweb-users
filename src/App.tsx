@@ -11,7 +11,7 @@ const App: FC = () => {
 
   return (
     <Provider store={store}>
-      <BrowserRouter basename='/'>
+      <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
         <Layout className='layout'>
           <Layout.Content>
             <AppRouter />
