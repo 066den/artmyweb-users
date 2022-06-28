@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Table, Select, Space, message } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/lib/table';
 import { useNavigate } from 'react-router-dom';
@@ -39,21 +39,25 @@ const Users: FC = () => {
     data: users,
     isLoading,
     error,
+    refetch,
   } = userAPI.useFetchAllUsersQuery(query);
 
   const router = useNavigate();
 
-  const handleTableChange = (newPagination: TablePaginationConfig) => {
-    setQuery({
-      page: newPagination.current,
-    });
-  };
+  const handleTableChange = useCallback(
+    (newPagination: TablePaginationConfig) => {
+      setQuery({
+        page: newPagination.current,
+      });
+    },
+    []
+  );
 
-  const handleGenderChange = (value: string) => {
+  const handleGenderChange = useCallback((value: string) => {
     setQuery(prevState => {
       return { ...prevState, gender: value };
     });
-  };
+  }, []);
 
   useEffect(() => {
     setPagination({
@@ -64,7 +68,9 @@ const Users: FC = () => {
     if (error) {
       message.error(`The request failed`);
     }
-  }, [users, error]);
+
+    refetch();
+  }, [query]);
 
   return (
     <div className='container'>

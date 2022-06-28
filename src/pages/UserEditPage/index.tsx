@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { FC, useCallback, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -17,7 +17,8 @@ import { userAPI } from '../../services/UserService';
 
 const UserEdit: FC = () => {
   const { id } = useParams();
-  const { data, isLoading, refetch } = userAPI.useFetchUserQuery(id);
+  const navigate = useNavigate();
+  const { data, isLoading, refetch } = userAPI.useFetchUserQuery(Number(id));
   const [editUser, { error }] = userAPI.useEditUserMutation();
 
   const onFinish = async (values: any) => {
@@ -33,13 +34,17 @@ const UserEdit: FC = () => {
     }
   };
 
+  const checkStatus = useMemo(() => {
+    return data?.data.status === 'active' ? 'checked' : '';
+  }, [data?.data.status]);
+
+  const HandleGoBackClick = useCallback(() => {
+    navigate('/users');
+  }, []);
+
   return (
     <>
-      <PageHeader
-        ghost={false}
-        onBack={() => window.history.back()}
-        title='goBack'
-      />
+      <PageHeader onBack={HandleGoBackClick} title='goBack' />
       {!isLoading && (
         <div className='container'>
           <Row justify='center'>
@@ -57,7 +62,7 @@ const UserEdit: FC = () => {
                   name: data?.data.name,
                   email: data?.data.email,
                   gender: data?.data.gender,
-                  status: 'checked',
+                  status: checkStatus,
                 }}
                 onFinish={onFinish}
                 autoComplete='off'
@@ -92,9 +97,7 @@ const UserEdit: FC = () => {
                 </Form.Item>
                 <Form.Item
                   name='status'
-                  valuePropName={
-                    data?.data.status === 'active' ? 'checked' : ''
-                  }
+                  valuePropName={checkStatus}
                   wrapperCol={{
                     xs: { span: 24, offset: 0 },
                     sm: { span: 16, offset: 8 },

@@ -17,7 +17,7 @@ export const userAPI = createApi({
         },
       }),
     }),
-    fetchUser: build.query<DataUser<IUser>, any>({
+    fetchUser: build.query<DataUser<IUser>, number>({
       query: id => ({
         url: `users/${id}`,
         params: {
