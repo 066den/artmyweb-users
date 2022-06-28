@@ -7,18 +7,19 @@ import AppRouter from './components/AppRouter';
 import { setupStore } from './store';
 
 const App: FC = () => {
-	const store = setupStore();
-	return (
-		<Provider store={store}>
-			<BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
-				<Layout className='container'>
-					<Layout.Content>
-						<AppRouter />
-					</Layout.Content>
-				</Layout>
-			</BrowserRouter>
-		</Provider>
-	);
+  const store = setupStore();
+
+  return (
+    <Provider store={store}>
+      <BrowserRouter basename='/'>
+        <Layout className='layout'>
+          <Layout.Content>
+            <AppRouter />
+          </Layout.Content>
+        </Layout>
+      </BrowserRouter>
+    </Provider>
+  );
 };
 
 export default App;
